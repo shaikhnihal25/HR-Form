@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+    <style>
+        /* Google Forms-like CSS */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"]
+         {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+            width: 30px;
+            height: 20px;
+            padding : 16px
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* End of Google Forms-like CSS */
+        /* List CSS */
+        #userList {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .userDetails {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Details</h2>
+        <form id="userDetailsForm">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="contact">Contact</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="qualification">Qualification</label>
+            <input type="text" id="qualification" name="qualification" required>
+
+            <label for="experience">Experience</label>
+            <input type="text" id="experience" name="experience" required>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="lastSalary">Last drawn salary</label>
+            <input type="text" id="lastSalary" name="lastSalary" required>
+
+            <label for="expectedSalary">Expected Salary</label>
+            <input type="text" id="expectedSalary" name="expectedSalary" required>
+
+            <label for="email">Email ID</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="organization">Current / Last organization</label>
+            <input type="text" id="organization" name="organization" required>
+
+            <label>Communication skill</label>
+            <input type="radio" id="communicationSkillAverage" name="communicationSkill" value="Average" required>
+            <label for="communicationSkillAverage">Average</label>
+            <input type="radio" id="communicationSkillGood" name="communicationSkill" value="Good" required>
+            <label for="communicationSkillGood">Good</label>
+            <input type="radio" id="communicationSkillExcellent" name="communicationSkill" value="Excellent" required>
+            <label for="communicationSkillExcellent">Excellent</label>
+
+            <button type="button" onclick="displayUserDetails()">Submit</button>
+        </form>
+
+        <div id="userList">
+            <h2>User Details List</h2>
+            <div id="userDetailsList"></div>
+        </div>
+    </div>
+
+    <script>
+        const userDetailsArray = [];
+
+        function displayUserDetails() {
+            const form = document.getElementById("userDetailsForm");
+
+            const name = form.name.value;
+            const contact = form.contact.value;
+            const location = form.location.value;
+            const qualification = form.qualification.value;
+            const experience = form.experience.value;
+            const age = form.age.value;
+            const lastSalary = form.lastSalary.value;
+            const expectedSalary = form.expectedSalary.value;
+            const email = form.email.value;
+            const organization = form.organization.value;
+            const communicationSkill = document.querySelector('input[name="communicationSkill"]:checked').value;
+
+            const userDetails = {
+                name,
+                contact,
+                location,
+                qualification,
+                experience,
+                age,
+                lastSalary,
+                expectedSalary,
+                email,
+                organization,
+                communicationSkill,
+            };
+
+            userDetailsArray.push(userDetails);
+
+            // Clear form fields
+            form.reset();
+
+            displayUserList();
+        }
+
+        function displayUserList() {
+            const userListDiv = document.getElementById("userDetailsList");
+            userListDiv.innerHTML = "";
+
+            userDetailsArray.forEach((userDetails, index) => {
+                const userDetailsText = `<div class="userDetails">
+                    <strong>Details ${index + 1}:</strong><br>
+                    Name - ${userDetails.name}<br>
+                    Contact - ${userDetails.contact}<br>
+                    Location - ${userDetails.location}<br>
+                    Qualification - ${userDetails.qualification}<br>
+                    Experience - ${userDetails.experience}<br>
+                    Age - ${userDetails.age}<br>
+                    Last drawn salary - ₹${userDetails.lastSalary}<br>
+                    Expected Salary - ₹${userDetails.expectedSalary}<br>
+                    Email ID - ${userDetails.email}<br>
+                    Current / Last organization - ${userDetails.organization}<br>
+                    Communication skill - ${userDetails.communicationSkill}
+                </div>`;
+                userListDiv.innerHTML += userDetailsText;
+            });
+        }
+    </script>
+</body>
+</html>
+
