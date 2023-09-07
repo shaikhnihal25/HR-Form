@@ -91,6 +91,9 @@
             <label for="qualification">Qualification</label>
             <input type="text" id="qualification" name="qualification" required>
 
+            <label for="designation">Designation( Looking For )</label>
+            <input type="text" id="designation" name="designation" required>
+
             <label for="experience">Experience</label>
             <input type="text" id="experience" name="experience" required>
 
@@ -136,6 +139,7 @@
             const contact = form.contact.value;
             const location = form.location.value;
             const qualification = form.qualification.value;
+            const designation = form.designation.value;
             const experience = form.experience.value;
             const age = form.age.value;
             const lastSalary = form.lastSalary.value;
@@ -149,6 +153,7 @@
                 contact,
                 location,
                 qualification,
+                designation,
                 experience,
                 age,
                 lastSalary,
@@ -177,6 +182,7 @@
                     Contact - ${userDetails.contact}<br>
                     Location - ${userDetails.location}<br>
                     Qualification - ${userDetails.qualification}<br>
+                    Designation( Looking For ) - ${userDetails.designation}<br>
                     Experience - ${userDetails.experience}<br>
                     Age - ${userDetails.age}<br>
                     Last drawn salary - ₹${userDetails.lastSalary}<br>
